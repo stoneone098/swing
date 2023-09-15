@@ -21,8 +21,6 @@ public class Restcall {
 			response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
 			  
-			    System.out.println(response.body().toString());
-			    System.out.println();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

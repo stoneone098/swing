@@ -56,51 +56,58 @@ public class Loginview {
 		frmWelcomeToJava.setBounds(100, 100, 450, 300);
 		frmWelcomeToJava.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmWelcomeToJava.getContentPane().setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("User Name");
 		lblNewLabel.setBounds(35, 90, 89, 14);
 		frmWelcomeToJava.getContentPane().add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Password");
 		lblNewLabel_1.setBounds(35, 151, 89, 14);
 		frmWelcomeToJava.getContentPane().add(lblNewLabel_1);
-		
+
 		textField = new JTextField();
 		textField.setToolTipText("Enter the user name");
 		textField.setBounds(155, 87, 154, 20);
 		frmWelcomeToJava.getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		textField_1 = new JTextField();
 		textField_1.setToolTipText("password");
 		textField_1.setBounds(155, 148, 154, 20);
 		frmWelcomeToJava.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
-		
+
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String Username=textField.getText();
-				String Password=textField_1.getText()	;	
-				 
-				if(Username.isBlank()||Password.isBlank())
-				{
+				String Username = textField.getText();
+				String Password = textField_1.getText();
+
+				if (Username.isBlank() || Password.isBlank()) {
 					Alert dialog = new Alert("Please enter the user name Or password");
 					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 
+				}
 
+				else {
+					String value = "{\"username\":" + Username + ",\"password\":" + Password + "}";
+					Logincontroller login = new Logincontroller();
+					String output = login.vaild(value);
+					if (output.equals("Y")) {
+						Welcome frame = new Welcome();
+						frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+						frame.setVisible(true);
+
+					}
+					else
+					{
+						Alert dialog = new Alert("Please enter correct the user name Or password");
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					}
 				}
-				
-				
-				else
-				{
-					String value="{\"username\":"+Username+",\"password\":"+Password+"}";
-					Logincontroller login =new Logincontroller();
-			String output=login.vaild(value);
-			System.out.println(output);
-				}
-		
 
 			}
 		});
