@@ -6,7 +6,8 @@ public class Logincontroller {
 	
 	public String vaild(String input)
 	{		String Vaild="N";
-
+  
+	
 		Loginservice service = new Loginservice();
 		Vaild=service.vaild(input);
 
